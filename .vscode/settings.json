@@ -1,0 +1,55 @@
+{
+    "editor.fontSize": 14.4,
+    "editor.semanticHighlighting.enabled": true,
+    "editor.tokenColorCustomizations": {
+        "[Kimbie Dark]": {
+            "textMateRules": [
+                {
+                    "scope":[
+                        "variable.other.readwrite",
+                        //"variable.other.object"
+                    ],
+                    "settings": {
+                        "foreground": "#d3af86da"
+                    }
+                },
+                {
+                    "scope": [
+                        "entity.name.type.namespace",
+                        "keyword.preprocessor.region",
+                        "keyword.preprocessor.endregion"
+                    ],
+                    "settings": {
+                        "fontStyle": "italic underline"
+                    }
+                },
+                {
+                    "scope": [
+                        "variable.other.object.property"
+                    ],
+                    "settings": {
+                        "foreground": "#98676ad0",
+                        "fontStyle": "italic"
+                    }
+                },
+                {
+                    "scope": [
+                        "entity.name.function"
+                    ],
+                    "settings": {
+                        "foreground": "#66a09e",
+                        "fontStyle": "italic"
+                    }
+                },
+                {
+                    "scope": [
+                        "entity.name.variable.parameter"
+                    ],
+                    "settings": {
+                        "foreground": "#d3af86be"
+                    }
+                }
+            ]
+        }
+    }
+}
