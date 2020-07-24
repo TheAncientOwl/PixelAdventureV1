@@ -104,6 +104,7 @@ namespace PixelAdventureAPI.PlayerLogics
 
         private void FixedUpdate()
         {
+
             m_Grounded = Physics2D.BoxCast
             (
                 origin    : m_CircleCollider2D.bounds.center + Vector3.down * 0.5f,

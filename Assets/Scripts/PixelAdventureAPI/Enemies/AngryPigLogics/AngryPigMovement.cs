@@ -15,6 +15,7 @@ namespace PixelAdventureAPI.Enemies.AngryPigLogics
         [SerializeField] private float m_WalkSpeed = 0f;
         [SerializeField] private float m_RunSpeed = 0f;
         [SerializeField] private float m_AggroRange = 0f;
+        [SerializeField] private float m_KeepAggroTime = 0.05f;
         [SerializeField] private bool m_MoveLeft = true;
         [SerializeField] private LayerMask m_PlayerLayerMask = 0;
         [SerializeField] private float m_IdleTime = 1f;
@@ -26,6 +27,7 @@ namespace PixelAdventureAPI.Enemies.AngryPigLogics
         private Transform m_Transform = null;
         private bool m_MoveLock = false;
         private bool m_AggroPlayer = false;
+        private float m_AggroTimer = 0f;
 
         private void Start() 
         {
@@ -34,6 +36,10 @@ namespace PixelAdventureAPI.Enemies.AngryPigLogics
             m_LeftX = m_LeftTarget.transform.position.x;
             m_RightX = m_RightTarget.transform.position.x;
             m_Animator.SetBool(k_WALKING_HASH, true);
+        }
+
+        private void Update() {
+            
         }
         
         private void FixedUpdate() 
