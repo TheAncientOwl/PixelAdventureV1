@@ -38,6 +38,8 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\PixelAdventureAPI\Enemies\AngryPigLogics\AngryPigCollision.cs" />
      <Compile Include="Assets\Scripts\PixelAdventureAPI\Enemies\AngryPigLogics\AngryPigMovement.cs" />
+     <Compile Include="Assets\Scripts\PixelAdventureAPI\Enemies\RinoLogics\RinoCollision.cs" />
+     <Compile Include="Assets\Scripts\PixelAdventureAPI\Enemies\RinoLogics\RinoMovement.cs" />
      <Compile Include="Assets\Scripts\PixelAdventureAPI\Others\CameraFollow2D.cs" />
      <Compile Include="Assets\Scripts\PixelAdventureAPI\Others\Damager.cs" />
      <Compile Include="Assets\Scripts\PixelAdventureAPI\Others\Utils.cs" />

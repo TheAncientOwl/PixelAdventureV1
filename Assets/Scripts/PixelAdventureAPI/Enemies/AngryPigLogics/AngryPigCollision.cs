@@ -10,7 +10,7 @@ namespace PixelAdventureAPI.Enemies.AngryPigLogics
         private static readonly int k_HIT_HASH = Animator.StringToHash("hit");
 
         [Header("Knockback")]
-        [SerializeField] private float m_KnockbackDuration = 0.2f;
+        [SerializeField] private float m_KnockbackDuration = 0.21f;
         [SerializeField] private Vector2 m_KnockbackVelocity = Vector2.zero;
 
         [Header("On Death")]
@@ -65,7 +65,6 @@ namespace PixelAdventureAPI.Enemies.AngryPigLogics
             }
         }
 
-        
     }
 }
 

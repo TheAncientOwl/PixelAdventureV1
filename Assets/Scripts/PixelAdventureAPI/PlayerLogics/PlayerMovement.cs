@@ -53,7 +53,12 @@ namespace PixelAdventureAPI.PlayerLogics
 
         #endregion //===========================================================================\\
 
+        #region << knockback >>
         private bool m_IsKnockbacked = false;
+        private const float k_KNOCKBACK_NO_INPUT_TIME = 0.25f;
+        private float m_KnockbackTimer = 0f;
+
+        #endregion //===========================================================================\\
 
         private void Awake()
         {
@@ -65,11 +70,12 @@ namespace PixelAdventureAPI.PlayerLogics
 
         private void Update()
         {
-            if (m_IsKnockbacked)
+            if (m_IsKnockbacked || m_KnockbackTimer > 0f)
             {
+                m_KnockbackTimer -= Time.deltaTime;
                 m_CanJumpInAir = false;
                 return;
-            }  
+            }
                 
             m_Direction = Input.GetAxisRaw(k_HORIZONTAL);
 
@@ -142,6 +148,7 @@ namespace PixelAdventureAPI.PlayerLogics
         public IEnumerator KnockbackRoutine(float duration, Vector2 velocity, Vector2 direction)
         {
             m_IsKnockbacked = true;
+            m_Direction = 0f;
             float timer = 0f;
             velocity.x *= direction.x;
             velocity.y *= direction.y;
@@ -156,6 +163,7 @@ namespace PixelAdventureAPI.PlayerLogics
             }
 
             m_IsKnockbacked = false;
+            m_KnockbackTimer = k_KNOCKBACK_NO_INPUT_TIME;
             yield return 0;
         }
 
