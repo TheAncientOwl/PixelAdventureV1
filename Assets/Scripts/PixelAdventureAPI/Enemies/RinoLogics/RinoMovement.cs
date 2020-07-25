@@ -7,7 +7,6 @@ namespace PixelAdventureAPI.Enemies.RinoLogics
     public class RinoMovement : MonoBehaviour
     {
         private Animator m_Animator = null;
-        private static readonly int k_AGGRO_HASH = Animator.StringToHash("aggro");
         private static readonly int k_WALKING_HASH = Animator.StringToHash("isWalking");
 
         [Header("Movement")]
@@ -36,7 +35,7 @@ namespace PixelAdventureAPI.Enemies.RinoLogics
                 left: m_LeftTarget.transform.position.x,
                 right: m_RightTarget.transform.position.x
             );
-            //m_Animator.SetBool(k_WALKING_HASH, true);
+            m_Animator.SetBool(k_WALKING_HASH, true);
         }
 
         private void Update() => m_AggroTimer = m_AggroPlayer ? m_KeepAggroTime : m_AggroTimer - Time.deltaTime;
@@ -97,9 +96,9 @@ namespace PixelAdventureAPI.Enemies.RinoLogics
                 }
             }
 
-            //m_Animator.SetBool(k_WALKING_HASH, false);
+            m_Animator.SetBool(k_WALKING_HASH, false);
             yield return new WaitForSeconds(m_IdleTime);
-            //m_Animator.SetBool(k_WALKING_HASH, true);
+            m_Animator.SetBool(k_WALKING_HASH, true);
 
             m_MoveLock = false;
             m_MoveLeft = !m_MoveLeft;

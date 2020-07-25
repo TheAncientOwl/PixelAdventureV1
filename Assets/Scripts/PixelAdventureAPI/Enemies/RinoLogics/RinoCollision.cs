@@ -7,7 +7,7 @@ namespace PixelAdventureAPI.Enemies.RinoLogics
     public class RinoCollision : MonoBehaviour
     {
         private static readonly string k_PLAYER_TAG = "Player";
-        //private static readonly int k_HIT_HASH = Animator.StringToHash("hit");
+        private static readonly int k_HIT_HASH = Animator.StringToHash("hit");
 
         [Header("Knockback")]
         [SerializeField] private float m_KnockbackDuration = 0.21f;
@@ -39,14 +39,15 @@ namespace PixelAdventureAPI.Enemies.RinoLogics
         {
             if (collider.CompareTag(k_PLAYER_TAG))
             {
-                if (m_PlayerRigidbody2D.velocity.y < -100f)
+                if (m_PlayerRigidbody2D.velocity.y < -1f)
                 {
+                    Debug.Log(m_PlayerRigidbody2D.velocity.y);
                     PlayerScore.GetInstance().Value += m_Points;
                     m_Points = 0;
-                    //GetComponent<Animator>().SetTrigger(k_HIT_HASH);
+                    GetComponent<Animator>().SetTrigger(k_HIT_HASH);
                     GetComponent<RinoMovement>().StopAllCoroutines();
                     m_PlayerRigidbody2D.velocity = new Vector2(m_PlayerRigidbody2D.velocity.x, m_PlayerJumpVelocity);
-                    Destroy(this.gameObject, 0.5f);
+                    Destroy(this.gameObject, 0.33f);
                 }
                 else
                 {
@@ -57,7 +58,7 @@ namespace PixelAdventureAPI.Enemies.RinoLogics
                         direction: new Vector2
                         (
                             x: m_PlayerMovement.GetCenterX() < m_CircleCollider2D.bounds.center.x ? -1f : 1f,
-                            y: 1f
+                            y: 0f
                         )
                     ));
                 }

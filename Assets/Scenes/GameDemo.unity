@@ -5869,8 +5869,8 @@ GameObject:
   - component: {fileID: 1321318492}
   - component: {fileID: 1321318493}
   - component: {fileID: 1321318494}
-  - component: {fileID: 1321318495}
   - component: {fileID: 1321318496}
+  - component: {fileID: 1321318495}
   m_Layer: 8
   m_Name: Rino
   m_TagString: Untagged
@@ -5956,7 +5956,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1321318488}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.81, y: -78.48, z: 0}
+  m_LocalPosition: {x: -4.81, y: -78.58, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_Children:
   - {fileID: 1951428345}
@@ -6054,7 +6054,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_KnockbackDuration: 0.21
-  m_KnockbackVelocity: {x: 800, y: 125}
+  m_KnockbackVelocity: {x: 800, y: 60}
   m_PlayerJumpVelocity: 7
   m_Points: 10
 --- !u!1 &1327549191
