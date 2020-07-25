@@ -152,9 +152,8 @@ namespace PixelAdventureAPI.PlayerLogics
             float timer = 0f;
             velocity.x *= direction.x;
             velocity.y *= direction.y;
-            velocity *= Time.fixedDeltaTime;
+            velocity *= Time.deltaTime;
 
-            m_Rigidbody2D.velocity = Vector2.zero;
             while (timer <= duration)
             {
                 timer += Time.deltaTime;
