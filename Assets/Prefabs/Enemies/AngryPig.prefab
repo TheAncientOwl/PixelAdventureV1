@@ -166,7 +166,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_KnockbackDuration: 0.21
-  m_KnockbackVelocity: {x: 433.1, y: 0}
+  m_KnockbackVelocity: {x: 800, y: 0}
   m_PlayerJumpVelocity: 7
   m_Points: 10
 --- !u!114 &7653723235915740577
