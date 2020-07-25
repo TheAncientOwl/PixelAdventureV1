@@ -39,7 +39,7 @@ namespace PixelAdventureAPI.Enemies.AngryPigLogics
         {
             if (collider.CompareTag(k_PLAYER_TAG))
             {    
-                if (m_PlayerRigidbody2D.velocity.y < 0f)
+                if (m_PlayerRigidbody2D.velocity.y < -1f)
                 {
                     PlayerScore.GetInstance().Value += m_Points;
                     m_Points = 0;
