@@ -41,7 +41,6 @@ namespace PixelAdventureAPI.Enemies.RinoLogics
             {
                 if (m_PlayerRigidbody2D.velocity.y < -1f)
                 {
-                    Debug.Log(m_PlayerRigidbody2D.velocity.y);
                     PlayerScore.GetInstance().Value += m_Points;
                     m_Points = 0;
                     GetComponent<Animator>().SetTrigger(k_HIT_HASH);

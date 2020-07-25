@@ -50,8 +50,6 @@ namespace PixelAdventureAPI.Enemies.RinoLogics
                 layerMask: m_PlayerLayerMask
             ).collider != null;
 
-            //m_Animator.SetBool(k_AGGRO_HASH, m_AggroTimer > 0f);
-
             if (!m_MoveLock)
             {
                 if (m_MoveLeft)
