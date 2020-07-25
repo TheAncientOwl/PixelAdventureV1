@@ -12,18 +12,17 @@ namespace PixelAdventureAPI.Enemies.AngryPigLogics
         private static readonly int k_WALKING_HASH = Animator.StringToHash("isWalking");
 
         [Header("Movement")]
-        [SerializeField] private float m_WalkSpeed = 0f;
-        [SerializeField] private float m_RunSpeed = 0f;
-        [SerializeField] private float m_AggroRange = 0f;
-        [SerializeField] private float m_KeepAggroTime = 0.05f;
+        [SerializeField] private float m_WalkSpeed = 3.4f;
+        [SerializeField] private float m_RunSpeed = 8.5f;
+        [SerializeField] private float m_AggroRange = 5f;
+        [SerializeField] private float m_KeepAggroTime = 0.3f;
         [SerializeField] private bool m_MoveLeft = true;
         [SerializeField] private LayerMask m_PlayerLayerMask = 0;
         [SerializeField] private float m_IdleTime = 1f;
         [SerializeField] private Transform m_LeftTarget = null;
         [SerializeField] private Transform m_RightTarget = null;
-        private float m_LeftX = 0f;
-        private float m_RightX = 0f;
 
+        private TargetX m_TargetX = new TargetX(0f, 0f);
         private Transform m_Transform = null;
         private bool m_MoveLock = false;
         private bool m_AggroPlayer = false;
@@ -33,58 +32,41 @@ namespace PixelAdventureAPI.Enemies.AngryPigLogics
         {
             m_Animator = GetComponent<Animator>();
             m_Transform = GetComponent<Transform>();
-            m_LeftX = m_LeftTarget.transform.position.x;
-            m_RightX = m_RightTarget.transform.position.x;
+            m_TargetX = new TargetX
+            (
+                left  : m_LeftTarget.transform.position.x,
+                right : m_RightTarget.transform.position.x
+            );
             m_Animator.SetBool(k_WALKING_HASH, true);
         }
 
-        private void Update() {
-            
-        }
+        private void Update() => m_AggroTimer = m_AggroPlayer ? m_KeepAggroTime : m_AggroTimer - Time.deltaTime;
         
         private void FixedUpdate() 
         {
             m_AggroPlayer = Utils.Raycast
             (
-                origin: m_Transform.position,
-                direction: m_MoveLeft ? Vector2.left : Vector2.right,
-                distance: Mathf.Min(m_MoveLeft ? m_Transform.position.x - m_LeftX : m_RightX - m_Transform.position.x, m_AggroRange),
-                layerMask: m_PlayerLayerMask
+                origin    : m_Transform.position,
+                direction : m_MoveLeft ? Vector2.left : Vector2.right,
+                distance  : Mathf.Min(m_MoveLeft ? m_Transform.position.x - m_TargetX.left : m_TargetX.right - m_Transform.position.x, m_AggroRange),
+                layerMask : m_PlayerLayerMask
             ).collider != null;
-            
-            m_Animator.SetBool(k_AGGRO_HASH, m_AggroPlayer);
 
-            // Debug.DrawLine
-            // (
-            //     start : m_Transform.position,
-            //     end   : new Vector3
-            //     (
-            //         x : m_Transform.position.x + 
-            //         (
-            //             m_MoveLeft ? 
-            //                 -Mathf.Min(m_Transform.position.x - m_LeftX, m_AggroRange) :
-            //                 Mathf.Min(m_RightX - m_Transform.position.x, m_AggroRange)
-            //         ), 
-            //         y : m_Transform.position.y, 
-            //         z :m_Transform.position.z
-            //     ),
-            //     color : m_AggroPlayer ? Color.red : Color.green
-            // );
-
+            m_Animator.SetBool(k_AGGRO_HASH, m_AggroTimer > 0f);
+           
             if (!m_MoveLock)
             {
                 if (m_MoveLeft)
                 {
-                    StartCoroutine(MoveTowards(m_LeftX));
+                    StartCoroutine(MoveTowards(m_TargetX.left));
                 }   
                 else
                 {
-                    StartCoroutine(MoveTowards(m_RightX));
+                    StartCoroutine(MoveTowards(m_TargetX.right));
                 }
             }
         }
 
-        
         private IEnumerator MoveTowards(float x)
         {
             m_MoveLock = true;
@@ -95,7 +77,7 @@ namespace PixelAdventureAPI.Enemies.AngryPigLogics
                 {
                     m_Transform.Translate
                     (
-                        x : -(m_AggroPlayer ? m_RunSpeed : m_WalkSpeed) * Time.deltaTime,
+                        x : -(m_AggroTimer > 0f ? m_RunSpeed : m_WalkSpeed) * Time.deltaTime,
                         y : 0f,
                         z : 0f
                     );
@@ -108,9 +90,9 @@ namespace PixelAdventureAPI.Enemies.AngryPigLogics
                 {
                     m_Transform.Translate
                     (
-                        x: (m_AggroPlayer ? m_RunSpeed : m_WalkSpeed) * Time.deltaTime,
-                        y: 0f,
-                        z: 0f
+                        x : (m_AggroTimer > 0f ? m_RunSpeed : m_WalkSpeed) * Time.deltaTime,
+                        y : 0f,
+                        z : 0f
                     );
                     yield return null;
                 }
@@ -129,6 +111,16 @@ namespace PixelAdventureAPI.Enemies.AngryPigLogics
 
             yield return 0;
         }
+
+        private struct TargetX
+        {
+            public float left, right;
+            public TargetX(float left, float right)
+            {
+                this.left = left;
+                this.right = right;
+            }
+        };
         
     }
 
