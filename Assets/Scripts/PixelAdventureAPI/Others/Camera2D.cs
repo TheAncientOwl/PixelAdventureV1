@@ -10,9 +10,9 @@ namespace PixelAdventureAPI.Others
         [Header("Free Zone")]
         [SerializeField] private Vector2 m_Offset = Vector2.zero;
 
-        [Header("Movement")]
-        [SerializeField] private float m_Speed = 3f;
-        [SerializeField] private Rigidbody2D m_PlayerRigidbody2D = null;
+        // [Header("Movement")]
+        // [SerializeField] private float m_Speed = 3f;
+        // [SerializeField] private Rigidbody2D m_PlayerRigidbody2D = null;
 
         [Header("Bounds")]
         [SerializeField] private float m_Left = 0f;
@@ -25,42 +25,49 @@ namespace PixelAdventureAPI.Others
 
         private void Start() => m_Threshold = CalculateThreshold();
 
-        private void FixedUpdate() 
+        private void LateUpdate() 
         {
             Vector3 newPosition = transform.position;
 
-            float xDifference = Vector2.Distance(Vector2.right * transform.position.x, Vector2.right * m_Player.position.x);
-            float yDifference = Vector2.Distance(Vector2.up * transform.position.y, Vector2.up * m_Player.position.y);
-
-            if (Mathf.Abs(xDifference) >= m_Threshold.x)
+            if (Mathf.Abs(transform.position.x - m_Player.position.x) >= m_Threshold.x)
                 newPosition.x = m_Player.position.x;
 
-            if (Mathf.Abs(yDifference) >= m_Threshold.y)
+            if (Mathf.Abs(transform.position.y - m_Player.position.y) >= m_Threshold.y)
                 newPosition.y = m_Player.position.y;
 
-            float moveSpeed = m_PlayerRigidbody2D.velocity.magnitude > m_Speed ? m_PlayerRigidbody2D.velocity.magnitude : m_Speed;
+            if (newPosition != transform.position)
+            {
 
-            transform.position = Vector3.MoveTowards(transform.position, newPosition, moveSpeed * Time.deltaTime);
+                // float moveSpeed = m_PlayerRigidbody2D.velocity.magnitude > m_Speed ? m_PlayerRigidbody2D.velocity.magnitude : m_Speed;
+                // transform.position = Vector3.MoveTowards(transform.position, newPosition, moveSpeed * Time.deltaTime);
+
+                transform.position = Vector3.Lerp
+                (
+                    a : transform.position,
+                    b : newPosition,
+                    t : Time.deltaTime
+                );
+
+                transform.position = new Vector3
+                (
+                    x: Mathf.Clamp(transform.position.x, m_Left, m_Right),
+                    y: Mathf.Clamp(transform.position.y, m_Top, m_Bottom),
+                    z: k_CAMERA_DEPTH
+                );
+            }
             
-            transform.position = new Vector3
-            (
-                x: Mathf.Clamp(transform.position.x, m_Left, m_Right),
-                y: Mathf.Clamp(transform.position.y, m_Top, m_Bottom),
-                z: k_CAMERA_DEPTH
-            ); 
         }
 
         private Vector2 CalculateThreshold()
         {
-            Camera m_Camera = Camera.main;
-            Rect aspect = m_Camera.pixelRect;
+            Camera camera = Camera.main;
+            Rect aspect = camera.pixelRect;
             Vector2 t = new Vector2
             (
-                x : m_Camera.orthographicSize * aspect.width / aspect.height,
-                y : m_Camera.orthographicSize
-            ); 
-            t.x -= m_Offset.x;
-            t.y -= m_Offset.y;
+                x: camera.orthographicSize * aspect.width / aspect.height,
+                y: camera.orthographicSize
+            );
+            t -= m_Offset;
 
             return t;
         }
