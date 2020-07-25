@@ -57,7 +57,7 @@ namespace PixelAdventureAPI.Enemies.RinoLogics
                         direction: new Vector2
                         (
                             x: m_PlayerMovement.GetCenterX() < m_CircleCollider2D.bounds.center.x ? -1f : 1f,
-                            y: 0f
+                            y: 1f
                         )
                     ));
                 }
