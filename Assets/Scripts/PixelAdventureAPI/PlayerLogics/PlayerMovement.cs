@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using PixelAdventureAPI.Others;
+using System.Collections;
 using UnityEngine;
 
 namespace PixelAdventureAPI.PlayerLogics
@@ -139,13 +140,13 @@ namespace PixelAdventureAPI.PlayerLogics
             }
         }
 
-        public void ApplyKnockback180(float duration, Vector2 velocity, Vector2 colliderCenter)
+        public void ApplyKnockback180(Knockback knockback, Vector2 colliderCenter)
         {
             if (!m_IsKnockbacked)
             {
                 StartCoroutine(KnockbackRoutine(
-                    duration  : duration,
-                    velocity  : velocity,
+                    duration  : knockback.duration,
+                    velocity  : knockback.velocity,
                     direction : new Vector2
                     (
                         x: m_CircleCollider2D.bounds.center.x <= colliderCenter.x ? -1f : 1f,
@@ -156,13 +157,13 @@ namespace PixelAdventureAPI.PlayerLogics
             
         }
 
-        public void ApplyKnockback360(float duration, Vector2 velocity, Vector2 colliderCenter)
+        public void ApplyKnockback360(Knockback knockback, Vector2 colliderCenter)
         {
             if (!m_IsKnockbacked)
             {
                 StartCoroutine(KnockbackRoutine(
-                    duration  : duration,
-                    velocity  : velocity,
+                    duration  : knockback.duration,
+                    velocity  : knockback.velocity,
                     direction : new Vector2
                     (
                         x: m_CircleCollider2D.bounds.center.x <= colliderCenter.x ? -1f : 1f,

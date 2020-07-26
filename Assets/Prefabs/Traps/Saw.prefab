@@ -148,3 +148,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_KnockbackDuration: 0.21
   m_KnockbackVelocity: {x: 471, y: 200}
+  m_Knockback:
+    duration: 0.21
+    velocity: {x: 471, y: 200}

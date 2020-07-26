@@ -18,6 +18,8 @@ namespace PixelAdventureAPI.Traps
         private Animator m_Animator = null;
         private Damager m_Damager = null;
 
+        [SerializeField] private Knockback m_Knockback = null;
+
         [Header("Movement")]
         [SerializeField] private float m_UpForce = 0f;
         [SerializeField] private float m_DownForce = 0f;
@@ -27,10 +29,6 @@ namespace PixelAdventureAPI.Traps
         private Vector2 m_BoxcastPos = Vector2.zero;
         private float m_TopPosY = 0f;
         private bool m_MoveLock = false;
-
-        [Header("Knockback")]
-        [SerializeField] private float m_KnockbackDuration = 0.2f;
-        [SerializeField] private Vector2 m_KnobackVelocity = Vector2.zero;
 
         private void Start()
         {
@@ -58,8 +56,7 @@ namespace PixelAdventureAPI.Traps
 
                 m_PlayerMovement.ApplyKnockback360
                 (
-                    duration       : m_KnockbackDuration,
-                    velocity       : m_KnobackVelocity,
+                    knockback      : m_Knockback,
                     colliderCenter : m_CircleCollider2D.bounds.center
                 );
                 

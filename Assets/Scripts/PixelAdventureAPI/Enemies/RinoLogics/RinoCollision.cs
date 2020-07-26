@@ -9,9 +9,7 @@ namespace PixelAdventureAPI.Enemies.RinoLogics
         private static readonly string k_PLAYER_TAG = "Player";
         private static readonly int k_HIT_HASH = Animator.StringToHash("hit");
 
-        [Header("Knockback")]
-        [SerializeField] private float m_KnockbackDuration = 0.21f;
-        [SerializeField] private Vector2 m_KnockbackVelocity = Vector2.zero;
+        [SerializeField] private Knockback m_Knockback = null;
 
         [Header("On Death")]
         [SerializeField] private float m_PlayerJumpVelocity = 7f;
@@ -54,8 +52,7 @@ namespace PixelAdventureAPI.Enemies.RinoLogics
 
                     m_PlayerMovement.ApplyKnockback180
                     (
-                        duration       : m_KnockbackDuration,
-                        velocity       : m_KnockbackVelocity,
+                        knockback      : m_Knockback,
                         colliderCenter : m_CircleCollider2D.bounds.center
                     );
                     
