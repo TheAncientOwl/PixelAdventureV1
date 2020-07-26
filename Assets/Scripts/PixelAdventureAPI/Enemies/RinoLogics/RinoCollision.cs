@@ -51,15 +51,14 @@ namespace PixelAdventureAPI.Enemies.RinoLogics
                 else
                 {
                     m_Damager.Apply();
-                    StartCoroutine(m_PlayerMovement.KnockbackRoutine(
-                        duration: m_KnockbackDuration,
-                        velocity: m_KnockbackVelocity,
-                        direction: new Vector2
-                        (
-                            x: m_PlayerMovement.GetCenterX() < m_CircleCollider2D.bounds.center.x ? -1f : 1f,
-                            y: 0f
-                        )
-                    ));
+
+                    m_PlayerMovement.ApplyKnockback180
+                    (
+                        duration       : m_KnockbackDuration,
+                        velocity       : m_KnockbackVelocity,
+                        colliderCenter : m_CircleCollider2D.bounds.center
+                    );
+                    
                 }
 
             }

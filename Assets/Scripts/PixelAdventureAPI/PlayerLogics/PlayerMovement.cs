@@ -139,13 +139,41 @@ namespace PixelAdventureAPI.PlayerLogics
             }
         }
 
-        public float GetCenterX() => m_CircleCollider2D.bounds.center.x;
+        public void ApplyKnockback180(float duration, Vector2 velocity, Vector2 colliderCenter)
+        {
+            if (!m_IsKnockbacked)
+            {
+                StartCoroutine(KnockbackRoutine(
+                    duration  : duration,
+                    velocity  : velocity,
+                    direction : new Vector2
+                    (
+                        x: m_CircleCollider2D.bounds.center.x <= colliderCenter.x ? -1f : 1f,
+                        y: m_Rigidbody2D.velocity.y == 0f ? 0f : 1f
+                    )
+                ));
+            }
+            
+        }
 
-        public float GetCenterY() => m_CircleCollider2D.bounds.center.y;
+        public void ApplyKnockback360(float duration, Vector2 velocity, Vector2 colliderCenter)
+        {
+            if (!m_IsKnockbacked)
+            {
+                StartCoroutine(KnockbackRoutine(
+                    duration  : duration,
+                    velocity  : velocity,
+                    direction : new Vector2
+                    (
+                        x: m_CircleCollider2D.bounds.center.x <= colliderCenter.x ? -1f : 1f,
+                        y: m_Rigidbody2D.velocity.y == 0f ? 0f : (m_CircleCollider2D.bounds.center.y < colliderCenter.y ? -1f : 1f)
+                    )
+                ));
+            }
+            
+        }
 
-        public float GetVelocityY() => m_Rigidbody2D.velocity.y;
-
-        public IEnumerator KnockbackRoutine(float duration, Vector2 velocity, Vector2 direction)
+        private IEnumerator KnockbackRoutine(float duration, Vector2 velocity, Vector2 direction)
         {
             m_IsKnockbacked = true;
             m_Direction = 0f;
@@ -165,8 +193,6 @@ namespace PixelAdventureAPI.PlayerLogics
             m_KnockbackTimer = k_KNOCKBACK_NO_INPUT_TIME;
             yield return 0;
         }
-
-        
 
     }
 }
