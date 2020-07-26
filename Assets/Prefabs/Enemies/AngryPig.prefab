@@ -14,8 +14,9 @@ GameObject:
   - component: {fileID: 7653723235915740589}
   - component: {fileID: 7653723235915740578}
   - component: {fileID: 7653723235915740579}
-  - component: {fileID: 7653723235915740576}
-  - component: {fileID: 7653723235915740577}
+  - component: {fileID: 3472508210006858260}
+  - component: {fileID: 3222641000033827154}
+  - component: {fileID: 2886401216864591770}
   m_Layer: 0
   m_Name: AngryPig
   m_TagString: Untagged
@@ -152,37 +153,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Damage: 30
---- !u!114 &7653723235915740576
+--- !u!114 &3472508210006858260
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 2501870798827926177, guid: 2d03ecda0dd94da4e9efe9306c6fdbd6,
-    type: 3}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7653723235915740583}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 286e76bfd5052e5449875f1a715ab6ef, type: 3}
+  m_Script: {fileID: 11500000, guid: c90c64d0b51e6fa43b7bcb3e0fdb91d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_KnockbackDuration: 0.21
-  m_KnockbackVelocity: {x: 800, y: 0}
   m_Knockback:
     duration: 0.21
     velocity: {x: 800, y: 0}
-  m_PlayerJumpVelocity: 7
-  m_Points: 10
---- !u!114 &7653723235915740577
+  m_ColliderType: 0
+--- !u!114 &3222641000033827154
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 2501870798827926204, guid: 2d03ecda0dd94da4e9efe9306c6fdbd6,
-    type: 3}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7653723235915740583}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 168f6dddb6b429949b4d204fbe7bc837, type: 3}
+  m_Script: {fileID: 11500000, guid: 836f57922e529054fb61600f4bfa7480, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_WalkSpeed: 3.4
@@ -193,9 +189,23 @@ MonoBehaviour:
   m_PlayerLayerMask:
     serializedVersion: 2
     m_Bits: 512
-  m_IdleTime: 0
+  m_IdleTime: 1
   m_LeftTarget: {fileID: 7653723236221211100}
   m_RightTarget: {fileID: 7653723235915740582}
+--- !u!114 &2886401216864591770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7653723235915740583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 696c1ac52f47ca24f8b0f9027225b187, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PlayerJumpVelocity: 7
+  m_Points: 10
 --- !u!1 &7653723236221211101
 GameObject:
   m_ObjectHideFlags: 0

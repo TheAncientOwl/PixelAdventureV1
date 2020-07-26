@@ -36,10 +36,10 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\PixelAdventureAPI\Enemies\AngryPigLogics\AngryPigCollision.cs" />
-     <Compile Include="Assets\Scripts\PixelAdventureAPI\Enemies\AngryPigLogics\AngryPigMovement.cs" />
-     <Compile Include="Assets\Scripts\PixelAdventureAPI\Enemies\RinoLogics\RinoCollision.cs" />
-     <Compile Include="Assets\Scripts\PixelAdventureAPI\Enemies\RinoLogics\RinoMovement.cs" />
+     <Compile Include="Assets\Scripts\PixelAdventureAPI\Enemies\API\SimpleCollision.cs" />
+     <Compile Include="Assets\Scripts\PixelAdventureAPI\Enemies\API\SimpleMovement.cs" />
+     <Compile Include="Assets\Scripts\PixelAdventureAPI\Enemies\Logics\AngryPigController.cs" />
+     <Compile Include="Assets\Scripts\PixelAdventureAPI\Enemies\Logics\RinoController.cs" />
      <Compile Include="Assets\Scripts\PixelAdventureAPI\Others\Camera2D.cs" />
      <Compile Include="Assets\Scripts\PixelAdventureAPI\Others\CameraFollow2D.cs" />
      <Compile Include="Assets\Scripts\PixelAdventureAPI\Others\Damager.cs" />
