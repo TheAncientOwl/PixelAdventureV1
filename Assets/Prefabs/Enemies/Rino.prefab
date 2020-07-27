@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 8113282331275748396}
   - component: {fileID: 8113282331275748397}
   - component: {fileID: 8113282331275748398}
+  - component: {fileID: 8749756200485455242}
   - component: {fileID: 4083540502709570885}
   - component: {fileID: 5320029121418107441}
-  - component: {fileID: 8749756200485455242}
   m_Layer: 8
   m_Name: Rino
   m_TagString: Untagged
@@ -164,6 +164,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Damage: 10
+--- !u!114 &8749756200485455242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8113282331275748392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c90c64d0b51e6fa43b7bcb3e0fdb91d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ColliderType: 1
+  m_Knockback:
+    duration: 0.21
+    velocity: {x: 800, y: 0}
 --- !u!114 &4083540502709570885
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -176,15 +192,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 836f57922e529054fb61600f4bfa7480, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_PlayerLayerMask:
+    serializedVersion: 2
+    m_Bits: 512
+  m_MoveLeft: 1
+  m_IdleTime: 1
   m_WalkSpeed: 3.4
   m_RunSpeed: 8.5
   m_AggroRange: 5
   m_KeepAggroTime: 0.3
-  m_MoveLeft: 1
-  m_PlayerLayerMask:
-    serializedVersion: 2
-    m_Bits: 512
-  m_IdleTime: 1
   m_LeftTarget: {fileID: 8113282331654304393}
   m_RightTarget: {fileID: 8113282331275748395}
 --- !u!114 &5320029121418107441
@@ -201,22 +217,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PlayerJumpVelocity: 7
   m_Points: 20
---- !u!114 &8749756200485455242
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8113282331275748392}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c90c64d0b51e6fa43b7bcb3e0fdb91d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Knockback:
-    duration: 0.21
-    velocity: {x: 800, y: 0}
-  m_ColliderType: 1
 --- !u!1 &8113282331654304392
 GameObject:
   m_ObjectHideFlags: 0
