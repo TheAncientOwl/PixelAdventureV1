@@ -44,7 +44,7 @@ namespace PixelAdventureAPI.Enemies.Logics
             GetComponent<SimpleMovement>().StopAllCoroutines();
             Rigidbody2D playerRigidbody2d = PlayerMovement.GetInstance().GetRigidbody2D();
             playerRigidbody2d.velocity = new Vector2(playerRigidbody2d.velocity.x, m_PlayerJumpVelocity);
-            Destroy(this.gameObject, 0.33f);
+            Destroy(this.gameObject, 0.49f);
         }
     }
 }
