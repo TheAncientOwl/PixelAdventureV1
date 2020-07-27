@@ -44,6 +44,7 @@
      <Compile Include="Assets\Scripts\PixelAdventureAPI\Enemies\Logics\ChickenMain.cs" />
      <Compile Include="Assets\Scripts\PixelAdventureAPI\Enemies\Logics\MushroomMain.cs" />
      <Compile Include="Assets\Scripts\PixelAdventureAPI\Enemies\Logics\RinoMain.cs" />
+     <Compile Include="Assets\Scripts\PixelAdventureAPI\Enemies\Logics\SlimeMain.cs" />
      <Compile Include="Assets\Scripts\PixelAdventureAPI\Others\Camera2D.cs" />
      <Compile Include="Assets\Scripts\PixelAdventureAPI\Others\CameraFollow2D.cs" />
      <Compile Include="Assets\Scripts\PixelAdventureAPI\Others\Damager.cs" />
