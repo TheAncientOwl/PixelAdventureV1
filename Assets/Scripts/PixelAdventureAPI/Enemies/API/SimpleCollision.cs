@@ -6,15 +6,16 @@ namespace PixelAdventureAPI.Enemies.API
 {
     /// <summary>
     /// OnTriggerEnter2D check if the object should die or apply damage and knockback to player.
+    /// Knockback 180 degrees.
     /// </summary>
     public class SimpleCollision : MonoBehaviour
     {
         private static readonly string k_PLAYER_TAG = "Player";
 
+        [SerializeField] private KnockbackType m_KnockbackType = KnockbackType.Degrees180;
         [SerializeField] private ColliderType m_ColliderType = ColliderType.BoxCollider2D;
         [SerializeField] private Knockback m_Knockback = null;
 
-        private static PlayerMovement m_PlayerMovement = null;
         private static Rigidbody2D m_PlayerRigidbody2D = null;
 
         private Collider2D m_Collider2D = null;
@@ -24,22 +25,40 @@ namespace PixelAdventureAPI.Enemies.API
         private OnDeathEvent m_OnDeath = null;
         public void AddOnDeath(OnDeathEvent e) => m_OnDeath += e;
 
+        private delegate void ApplyKnockback(Knockback knockback, Vector2 colliderCenter);
+        private ApplyKnockback m_ApplyKnockback = null;
+
         private void Start()
         {
-            m_PlayerMovement = PlayerMovement.GetInstance();
-            m_PlayerRigidbody2D = m_PlayerMovement.GetRigidbody2D();
+            PlayerMovement playerMovement = PlayerMovement.GetInstance();
+            m_PlayerRigidbody2D = playerMovement.GetRigidbody2D();
+
             switch (m_ColliderType)
             {
                 case ColliderType.BoxCollider2D:
                     m_Collider2D = GetComponent<BoxCollider2D>();
                     break;
                 case ColliderType.CircleCollider2D:
-                    m_Collider2D = GetComponent<BoxCollider2D>();
+                    m_Collider2D = GetComponent<CircleCollider2D>();
                     break;
                 default:
                     Debug.LogError("COLLIDER TYPE NOT SUPPORTED!");
                     break;
             }
+
+            switch (m_KnockbackType)
+            {
+                case KnockbackType.Degrees180:
+                    m_ApplyKnockback = playerMovement.ApplyKnockback180;
+                    break;
+                case KnockbackType.Degrees360:
+                    m_ApplyKnockback = playerMovement.ApplyKnockback360;
+                    break;
+                default:
+                    Debug.LogError("Knockback Type Not Supported!");
+                    break;
+            }
+
             m_Damager = GetComponent<Damager>();
         }
 
@@ -53,8 +72,7 @@ namespace PixelAdventureAPI.Enemies.API
                 {
                     m_Damager.Apply();
 
-                    m_PlayerMovement.ApplyKnockback180
-                    (
+                    m_ApplyKnockback(
                         knockback: m_Knockback,
                         colliderCenter: m_Collider2D.bounds.center
                     );
@@ -67,6 +85,12 @@ namespace PixelAdventureAPI.Enemies.API
         {
             BoxCollider2D,
             CircleCollider2D
+        }
+
+        private enum KnockbackType
+        {
+            Degrees180,
+            Degrees360
         }
 
     }
