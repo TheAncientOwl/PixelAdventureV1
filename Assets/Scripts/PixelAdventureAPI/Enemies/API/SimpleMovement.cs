@@ -139,16 +139,7 @@ namespace PixelAdventureAPI.Enemies.API
 
             yield return 0;
         }
-
-        private struct TargetX
-        {
-            public float left, right;
-            public TargetX(float left, float right)
-            {
-                this.left = left;
-                this.right = right;
-            }
-        };
+        
     }
 }
 
