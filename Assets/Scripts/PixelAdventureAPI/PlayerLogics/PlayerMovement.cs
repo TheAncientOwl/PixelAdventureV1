@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace PixelAdventureAPI.PlayerLogics
 {
+    /// <summary>
+    /// Manager for horizontal movement, jump (and it's input) and knockback.
+    /// </summary>
     public class PlayerMovement : MonoBehaviour
     {
         #region << instance >>
@@ -69,6 +72,13 @@ namespace PixelAdventureAPI.PlayerLogics
             m_Instance = this;
         }
 
+        /**
+         * ! If player is knockbacked only update knockback timer. 
+         * Get input for movement and jump.
+         * Update the jump and grounded buffers.
+         * Deals with jump.
+         * Also update player animation.
+         */
         private void Update()
         {
             if (m_IsKnockbacked || m_KnockbackTimer > 0f)
@@ -109,9 +119,13 @@ namespace PixelAdventureAPI.PlayerLogics
                 m_Animator.SetFloat(k_Y_VELOCITY_HASH, m_Rigidbody2D.velocity.y);
         }
 
+        /**
+         * Check if player is grounded.
+         * Moves the player.
+         * Flip player transform when needed.
+         */
         private void FixedUpdate()
         {
-
             m_Grounded = Physics2D.BoxCast
             (
                 origin    : m_CircleCollider2D.bounds.center + Vector3.down * 0.5f,
@@ -139,7 +153,12 @@ namespace PixelAdventureAPI.PlayerLogics
                 transform.localScale = scale;
             }
         }
-
+        
+        /// <summary>
+        /// Knockbacks player on 180 degrees.
+        /// </summary>
+        /// <param name="knockback"> attributes</param>
+        /// <param name="colliderCenter"> the 0 degrees point</param>
         public void ApplyKnockback180(Knockback knockback, Vector2 colliderCenter)
         {
             if (!m_IsKnockbacked)
@@ -157,6 +176,11 @@ namespace PixelAdventureAPI.PlayerLogics
             
         }
 
+        /// <summary>
+        /// Knockbacks player on 360 degrees.
+        /// </summary>
+        /// <param name="knockback"> Attributes. </param>
+        /// <param name="colliderCenter"> The 0 degrees point. </param>
         public void ApplyKnockback360(Knockback knockback, Vector2 colliderCenter)
         {
             if (!m_IsKnockbacked)
@@ -174,6 +198,7 @@ namespace PixelAdventureAPI.PlayerLogics
             
         }
 
+        // Coroutine to knockback the player
         private IEnumerator KnockbackRoutine(float duration, Vector2 velocity, Vector2 direction)
         {
             m_IsKnockbacked = true;

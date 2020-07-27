@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace PixelAdventureAPI
 {
+    /// <summary>
+    /// OnTriggerEnter2D increase player's score and destroy itself.
+    /// </summary>
     public class Fruit : MonoBehaviour
     {
         [SerializeField] private int m_Value = 10;

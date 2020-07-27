@@ -4,6 +4,18 @@ using UnityEngine;
 
 namespace PixelAdventureAPI.Traps
 {
+    /// <summary>
+    /// Trap.
+    /// Two parts: 
+    ///     1) solid, 
+    ///     2) damage.
+    /// Solid part acts like ground.
+    /// Damage part damages and knockbacks the player.
+    /// Two states: 
+    ///     1) on, 
+    ///     2) off.
+    /// Knockback 180 degrees.
+    /// </summary>
     public class Fire : MonoBehaviour
     {
         private static readonly string k_PLAYER_TAG = "Player";
@@ -32,6 +44,11 @@ namespace PixelAdventureAPI.Traps
             m_Damager = GetComponent<Damager>();
         }
 
+        /**
+         * Update on/off timer.
+         * Switches between states (on/off).
+         * Update animation.
+         */
         private void Update() 
         {
             if (m_Timer > k_SWITCH_TIME)
@@ -51,7 +68,8 @@ namespace PixelAdventureAPI.Traps
             else m_Animator.SetTrigger(k_OFF_HASH);
         }
 
-        private void Logics(Collider2D collider)
+        // Apply damage and knockback.
+        private void Logics()
         {
             m_Damager.Apply();
 
@@ -63,17 +81,19 @@ namespace PixelAdventureAPI.Traps
         }
 
         #region << apply logics >>
+        // Apply logics when player enters damage area.
         private void OnTriggerEnter2D(Collider2D collider)
         {
             if (m_On && collider.CompareTag(k_PLAYER_TAG))
-                Logics(collider);
+                Logics();
         }
 
+        // Apply logics while player stays in damage area.
         private void OnTriggerStay2D(Collider2D collider) 
         {
             if (!m_DamageWhileOff && m_On && collider.CompareTag(k_PLAYER_TAG))
             {
-                Logics(collider);
+                Logics();
                 m_DamageWhileOff = true;
             }
         }

@@ -2,6 +2,12 @@
 
 namespace PixelAdventureAPI.Others
 {
+    /// <summary>
+    /// Camera follow player.
+    /// Freezone.
+    /// Moves by Vector3.Lerp.
+    /// Bounds.
+    /// </summary>
     public class Camera2D : MonoBehaviour
     {
         [Header("Target")]
@@ -9,10 +15,6 @@ namespace PixelAdventureAPI.Others
 
         [Header("Free Zone")]
         [SerializeField] private Vector2 m_Offset = Vector2.zero;
-
-        // [Header("Movement")]
-        // [SerializeField] private float m_Speed = 3f;
-        // [SerializeField] private Rigidbody2D m_PlayerRigidbody2D = null;
 
         [Header("Bounds")]
         [SerializeField] private float m_Left = 0f;
@@ -25,6 +27,7 @@ namespace PixelAdventureAPI.Others
 
         private void Start() => m_Threshold = CalculateThreshold();
 
+        /// Move camera
         private void LateUpdate() 
         {
             Vector3 newPosition = transform.position;
@@ -37,10 +40,6 @@ namespace PixelAdventureAPI.Others
 
             if (newPosition != transform.position)
             {
-
-                // float moveSpeed = m_PlayerRigidbody2D.velocity.magnitude > m_Speed ? m_PlayerRigidbody2D.velocity.magnitude : m_Speed;
-                // transform.position = Vector3.MoveTowards(transform.position, newPosition, moveSpeed * Time.deltaTime);
-
                 transform.position = Vector3.Lerp
                 (
                     a : transform.position,
@@ -72,6 +71,7 @@ namespace PixelAdventureAPI.Others
             return t;
         }
 
+        // Draw the freezone.
         private void OnDrawGizmos() 
         {
             Gizmos.color = Color.blue;

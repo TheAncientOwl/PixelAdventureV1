@@ -4,15 +4,27 @@ using UnityEngine;
 
 namespace PixelAdventureAPI.Enemies.API
 {
+    /// <summary>
+    /// Move transform between two points.
+    /// Can aggro the player with a Phyisics2D.RayCast(...);
+    /// While aggro, move speed is higher.
+    /// Update animations.
+    /// </summary>
     public class SimpleMovement : MonoBehaviour
     {
+        [SerializeField] private LayerMask m_PlayerLayerMask = 0;
+        [SerializeField] private bool m_MoveLeft = true;
+        [SerializeField] private float m_IdleTime = 1f;
+
+        [Header("Speed")]
         [SerializeField] private float m_WalkSpeed = 3.4f;
         [SerializeField] private float m_RunSpeed = 8.5f;
+
+        [Header("Aggro")]
         [SerializeField] private float m_AggroRange = 5f;
         [SerializeField] private float m_KeepAggroTime = 0.3f;
-        [SerializeField] private bool m_MoveLeft = true;
-        [SerializeField] private LayerMask m_PlayerLayerMask = 0;
-        [SerializeField] private float m_IdleTime = 1f;
+
+        [Header("Target")]
         [SerializeField] private Transform m_LeftTarget = null;
         [SerializeField] private Transform m_RightTarget = null;
 
@@ -51,8 +63,13 @@ namespace PixelAdventureAPI.Enemies.API
             m_OnStart = null;
         }
 
+        // Update aggro timer.
         private void Update() => m_AggroTimer = m_AggroPlayer ? m_KeepAggroTime : m_AggroTimer - Time.deltaTime;
 
+        /**
+         * Check if object should aggro the player.
+         * Move transform.
+         */
         private void FixedUpdate()
         {
             m_AggroPlayer = Utils.Raycast

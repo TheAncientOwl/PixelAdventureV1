@@ -2,6 +2,11 @@
 
 namespace PixelAdventureAPI.Traps
 {
+    /// <summary>
+    /// Trap.
+    /// Solid.
+    /// Moves by direction with timer.
+    /// </summary>
     public class FloatingPlatform : MonoBehaviour
     {
         private Transform m_Transform = null;
@@ -17,6 +22,10 @@ namespace PixelAdventureAPI.Traps
             m_Transform = GetComponent<Transform>();
         }
 
+        /**
+         * Update timer
+         * Translate the transform.
+         */
         private void Update()
         {
             if (m_MoveTimer > k_MOVE_TIME)

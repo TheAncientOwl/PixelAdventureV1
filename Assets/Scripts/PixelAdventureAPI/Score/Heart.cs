@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace PixelAdventureAPI
 {
+    /// <summary>
+    /// OnTriggerEnter2D increase player's health and destroy itself.
+    /// </summary>
     public class Heart : MonoBehaviour
     {
         [SerializeField] private float m_HealthAmount = 10f;

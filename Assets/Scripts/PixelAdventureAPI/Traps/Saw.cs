@@ -4,6 +4,10 @@ using UnityEngine;
 
 namespace PixelAdventureAPI.Traps
 {
+    /// <summary>
+    /// Trap.
+    /// Knockback 360 degrees.
+    /// </summary>
     public class Saw : MonoBehaviour
     {
         private static readonly string k_PLAYER_TAG = "Player";
@@ -23,6 +27,7 @@ namespace PixelAdventureAPI.Traps
             m_Damager = GetComponent<Damager>();
         }
 
+        // Apply damage and knockback.
         private void OnTriggerEnter2D(Collider2D collider)
         {
             if (collider.CompareTag(k_PLAYER_TAG))
@@ -37,9 +42,7 @@ namespace PixelAdventureAPI.Traps
 
             }
         }
-
         
     }
-
 }
 

@@ -15,6 +15,10 @@ namespace PixelAdventureAPI.PlayerLogics
         [SerializeField] private Slider m_HealthBarSlider = null;
         private const float k_MAX_HEALTH = 100000000000f;
         private float m_Health = k_MAX_HEALTH;
+
+        /// <summary>
+        /// On update, also update UI healthbar.
+        /// </summary>
         public float Value
         {
             get { return m_Health; }

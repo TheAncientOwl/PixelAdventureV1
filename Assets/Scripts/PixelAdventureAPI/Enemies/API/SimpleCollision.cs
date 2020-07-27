@@ -4,12 +4,15 @@ using UnityEngine;
 
 namespace PixelAdventureAPI.Enemies.API
 {
+    /// <summary>
+    /// OnTriggerEnter2D check if the object should die or apply damage and knockback to player.
+    /// </summary>
     public class SimpleCollision : MonoBehaviour
     {
         private static readonly string k_PLAYER_TAG = "Player";
 
-        [SerializeField] private Knockback m_Knockback = null;
         [SerializeField] private ColliderType m_ColliderType = ColliderType.BoxCollider2D;
+        [SerializeField] private Knockback m_Knockback = null;
 
         private static PlayerMovement m_PlayerMovement = null;
         private static Rigidbody2D m_PlayerRigidbody2D = null;

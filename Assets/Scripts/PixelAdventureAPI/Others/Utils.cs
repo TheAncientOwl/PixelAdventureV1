@@ -4,6 +4,9 @@ namespace PixelAdventureAPI.Others
 {
     public class Utils
     {
+        /// <summary>
+        /// Also draws the Physics2D.BoxCast(...);
+        /// </summary>
         static public RaycastHit2D BoxCast(Vector2 origin, Vector2 size, float angle, Vector2 direction, float distance, int layerMask)
         {
             RaycastHit2D hit = Physics2D.BoxCast(origin, size, angle, direction, distance, layerMask);
@@ -59,6 +62,7 @@ namespace PixelAdventureAPI.Others
             return hit;
         }
 
+        /// Also draws the Phyisics2D.RayCast(...);
         static public RaycastHit2D Raycast(Vector2 origin, Vector2 direction, float distance, int layerMask)
         {
             RaycastHit2D hit = Physics2D.Raycast(origin, direction, distance, layerMask);

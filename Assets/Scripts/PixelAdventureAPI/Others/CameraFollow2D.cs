@@ -2,6 +2,9 @@
 
 namespace PixelAdventureAPI.Others
 {
+    /// <summary>
+    /// @deprecated Use Camera2D instead.
+    /// </summary>
     public class CameraFollow2D : MonoBehaviour
     {
         [SerializeField] private Transform m_Player = null;

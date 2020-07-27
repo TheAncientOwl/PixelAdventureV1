@@ -5,6 +5,10 @@ using UnityEngine;
 
 namespace PixelAdventureAPI.Traps
 {
+    /// <summary>
+    /// Trap.
+    /// RockHead + damage and knockback 360 degrees.
+    /// </summary>
     public class SpikeHead : MonoBehaviour
     {
         private static readonly string k_PLAYER_TAG = "Player";
@@ -48,6 +52,7 @@ namespace PixelAdventureAPI.Traps
             m_DownForce = -m_DownForce;
         }
 
+        // Apply damage and kncokback.
         private void OnTriggerEnter2D(Collider2D collider)
         {
             if (collider.CompareTag(k_PLAYER_TAG))
@@ -63,6 +68,7 @@ namespace PixelAdventureAPI.Traps
             }
         }
 
+        // Check if player is under.
         private void FixedUpdate()
         {
             if (!m_MoveLock)
@@ -86,6 +92,7 @@ namespace PixelAdventureAPI.Traps
             }
         }
 
+        // Coroutine.
         private IEnumerator MoveDown()
         {
             m_Animator.SetTrigger(k_BLINK_HASH);
@@ -105,6 +112,7 @@ namespace PixelAdventureAPI.Traps
             yield return 0;
         }
 
+        // Coroutine.
         private IEnumerator MoveUp()
         {
             m_Animator.SetTrigger(k_IDLE_HASH);
@@ -122,8 +130,6 @@ namespace PixelAdventureAPI.Traps
             m_MoveLock = false;
             yield return 0;
         }
-
-        
 
     }
 }

@@ -5,6 +5,10 @@ using UnityEngine;
 
 namespace PixelAdventureAPI.Traps
 {
+    /// <summary>
+    /// Trap.
+    /// When player under, falls and damages the player.
+    /// </summary>
     public class RockHead : MonoBehaviour
     {
         private static readonly string k_PLAYER_TAG = "Player";
@@ -44,6 +48,7 @@ namespace PixelAdventureAPI.Traps
             m_DownForce = -m_DownForce;  
         }
 
+        // Apply damage.
         private void OnTriggerEnter2D(Collider2D collider) 
         {
             if (m_MovingDown && !m_DamageLock && collider.CompareTag(k_PLAYER_TAG))
@@ -53,6 +58,7 @@ namespace PixelAdventureAPI.Traps
             }    
         }
 
+        // Check if player is under.
         private void FixedUpdate() 
         {
             if (!m_MoveLock)
@@ -76,6 +82,7 @@ namespace PixelAdventureAPI.Traps
             }
         }
 
+        // Coroutine.
         private IEnumerator MoveDown()
         {
             m_MovingDown = true;
@@ -96,6 +103,7 @@ namespace PixelAdventureAPI.Traps
             yield return 0;
         }
 
+        // Coroutine.
         private IEnumerator MoveUp()
         {
             m_MovingDown = false;

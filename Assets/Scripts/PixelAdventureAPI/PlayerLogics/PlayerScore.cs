@@ -13,6 +13,9 @@ namespace PixelAdventureAPI.PlayerLogics
 
         [SerializeField] private Text m_ScoreText = null;
         private int m_Score = 0;
+        /// <summary>
+        /// On update also update UI score text.
+        /// </summary>
         public int Value
         {
             get { return m_Score; }

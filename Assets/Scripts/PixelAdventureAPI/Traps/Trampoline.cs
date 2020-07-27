@@ -3,6 +3,10 @@ using UnityEngine;
 
 namespace PixelAdventureAPI.Traps
 {
+    /// <summary>
+    /// Trap.
+    /// Change player's velocity to a higher one.
+    /// </summary>
     public class Trampoline : MonoBehaviour
     {
         private static readonly int k_JUMP_HASH = Animator.StringToHash("jump");
@@ -19,6 +23,7 @@ namespace PixelAdventureAPI.Traps
             m_Animator = GetComponent<Animator>(); 
         }
 
+        // Push player.
         private void OnTriggerEnter2D(Collider2D collider) 
         {
             if (collider.CompareTag(k_PLAYER_TAG))

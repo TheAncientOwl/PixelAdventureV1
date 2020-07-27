@@ -2,6 +2,10 @@
 
 namespace PixelAdventureAPI.Others
 {
+    /// <summary>
+    /// Float duration.
+    /// Vector2 velocity.
+    /// </summary>
     [System.Serializable]
     public class Knockback
     {
