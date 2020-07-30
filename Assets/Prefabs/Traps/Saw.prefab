@@ -146,8 +146,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 742e3740319580f478a3cb1d9688ebdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_KnockbackDuration: 0.21
-  m_KnockbackVelocity: {x: 471, y: 200}
   m_Knockback:
-    duration: 0.21
-    velocity: {x: 471, y: 200}
+    duration: 0.15
+    force: {x: 1.53, y: 0.16}

@@ -188,10 +188,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c90c64d0b51e6fa43b7bcb3e0fdb91d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_KnockbackType: 0
   m_ColliderType: 0
-  m_Knockback:
-    duration: 0.21
-    velocity: {x: 800, y: 0}
+  m_KnockbackInfo:
+    duration: 0.15
+    force: {x: 1.8, y: 0}
 --- !u!114 &3817288393795702932
 MonoBehaviour:
   m_ObjectHideFlags: 0

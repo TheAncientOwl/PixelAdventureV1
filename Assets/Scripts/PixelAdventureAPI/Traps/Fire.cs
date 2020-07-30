@@ -23,7 +23,7 @@ namespace PixelAdventureAPI.Traps
         private static readonly int k_OFF_HASH      = Animator.StringToHash("off");
         private static readonly int k_PREPARE_HASH  = Animator.StringToHash("prepare");
 
-        [SerializeField] private Knockback m_Knockback = null;
+        [SerializeField] private KnockbackInfo m_KnockbackInfo = null;
 
         private static PlayerMovement m_PlayerMovement = null;
         private CircleCollider2D m_CircleCollider2D = null;
@@ -75,7 +75,7 @@ namespace PixelAdventureAPI.Traps
 
             m_PlayerMovement.ApplyKnockback180
             (
-                knockback      : m_Knockback,
+                knockbackInfo  : m_KnockbackInfo,
                 colliderCenter : m_CircleCollider2D.bounds.center
             );
         }

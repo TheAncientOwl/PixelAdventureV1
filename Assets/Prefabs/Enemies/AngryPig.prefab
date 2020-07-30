@@ -165,10 +165,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c90c64d0b51e6fa43b7bcb3e0fdb91d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Knockback:
-    duration: 0.21
-    velocity: {x: 800, y: 0}
+  m_KnockbackType: 0
   m_ColliderType: 0
+  m_KnockbackInfo:
+    duration: 0.15
+    force: {x: 2.2, y: 0}
 --- !u!114 &3222641000033827154
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181,15 +182,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 836f57922e529054fb61600f4bfa7480, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_PlayerLayerMask:
+    serializedVersion: 2
+    m_Bits: 512
+  m_MoveLeft: 1
+  m_IdleTime: 1
   m_WalkSpeed: 3.4
   m_RunSpeed: 8
   m_AggroRange: 5
   m_KeepAggroTime: 0.3
-  m_MoveLeft: 1
-  m_PlayerLayerMask:
-    serializedVersion: 2
-    m_Bits: 512
-  m_IdleTime: 1
   m_LeftTarget: {fileID: 7653723236221211100}
   m_RightTarget: {fileID: 7653723235915740582}
 --- !u!114 &2886401216864591770

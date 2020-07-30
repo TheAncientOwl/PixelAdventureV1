@@ -50,6 +50,7 @@
      <Compile Include="Assets\Scripts\PixelAdventureAPI\Others\CameraFollow2D.cs" />
      <Compile Include="Assets\Scripts\PixelAdventureAPI\Others\Damager.cs" />
      <Compile Include="Assets\Scripts\PixelAdventureAPI\Others\Knockback.cs" />
+     <Compile Include="Assets\Scripts\PixelAdventureAPI\Others\KnockbackInfo.cs" />
      <Compile Include="Assets\Scripts\PixelAdventureAPI\Others\TargetX.cs" />
      <Compile Include="Assets\Scripts\PixelAdventureAPI\Others\Utils.cs" />
      <Compile Include="Assets\Scripts\PixelAdventureAPI\PlayerLogics\PlayerHealth.cs" />

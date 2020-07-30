@@ -14,7 +14,7 @@ namespace PixelAdventureAPI.Enemies.API
 
         [SerializeField] private KnockbackType m_KnockbackType = KnockbackType.Degrees180;
         [SerializeField] private ColliderType m_ColliderType = ColliderType.BoxCollider2D;
-        [SerializeField] private Knockback m_Knockback = null;
+        [SerializeField] private KnockbackInfo m_KnockbackInfo = null;
 
         private static Rigidbody2D m_PlayerRigidbody2D = null;
 
@@ -25,7 +25,7 @@ namespace PixelAdventureAPI.Enemies.API
         private OnDeathEvent m_OnDeath = null;
         public void AddOnDeath(OnDeathEvent e) => m_OnDeath += e;
 
-        private delegate void ApplyKnockback(Knockback knockback, Vector2 colliderCenter);
+        private delegate void ApplyKnockback(KnockbackInfo knockback, Vector2 colliderCenter);
         private ApplyKnockback m_ApplyKnockback = null;
 
         private void Start()
@@ -73,7 +73,7 @@ namespace PixelAdventureAPI.Enemies.API
                     m_Damager.Apply();
 
                     m_ApplyKnockback(
-                        knockback: m_Knockback,
+                        knockback: m_KnockbackInfo,
                         colliderCenter: m_Collider2D.bounds.center
                     );
 

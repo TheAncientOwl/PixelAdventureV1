@@ -12,7 +12,7 @@ namespace PixelAdventureAPI.Traps
     {
         private static readonly string k_PLAYER_TAG = "Player";
 
-        [SerializeField] private Knockback m_Knockback = null;
+        [SerializeField] private KnockbackInfo m_KnockbackInfo = null;
 
         private static PlayerMovement m_PlayerMovement = null;
 
@@ -35,7 +35,7 @@ namespace PixelAdventureAPI.Traps
 
                 m_PlayerMovement.ApplyKnockback180
                 (
-                    knockback      : m_Knockback,
+                    knockbackInfo  : m_KnockbackInfo,
                     colliderCenter : m_BoxCollider2D.bounds.center
                 );
             }
@@ -43,4 +43,3 @@ namespace PixelAdventureAPI.Traps
 
     }
 }
-

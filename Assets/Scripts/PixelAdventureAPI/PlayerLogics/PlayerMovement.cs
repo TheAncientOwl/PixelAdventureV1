@@ -157,15 +157,15 @@ namespace PixelAdventureAPI.PlayerLogics
         /// <summary>
         /// Knockbacks player on 180 degrees.
         /// </summary>
-        /// <param name="knockback"> attributes</param>
+        /// <param name="knockbackInfo"> attributes</param>
         /// <param name="colliderCenter"> the 0 degrees point</param>
-        public void ApplyKnockback180(Knockback knockback, Vector2 colliderCenter)
+        public void ApplyKnockback180(KnockbackInfo knockbackInfo, Vector2 colliderCenter)
         {
             if (!m_IsKnockbacked)
             {
                 StartCoroutine(KnockbackRoutine(
-                    duration  : knockback.duration,
-                    velocity  : knockback.velocity,
+                    duration  : knockbackInfo.duration,
+                    force     : knockbackInfo.force,
                     direction : new Vector2
                     (
                         x: m_CircleCollider2D.bounds.center.x <= colliderCenter.x ? -1f : 1f,
@@ -179,15 +179,15 @@ namespace PixelAdventureAPI.PlayerLogics
         /// <summary>
         /// Knockbacks player on 360 degrees.
         /// </summary>
-        /// <param name="knockback"> Attributes. </param>
+        /// <param name="knockbackInfo"> Attributes. </param>
         /// <param name="colliderCenter"> The 0 degrees point. </param>
-        public void ApplyKnockback360(Knockback knockback, Vector2 colliderCenter)
+        public void ApplyKnockback360(KnockbackInfo knockbackInfo, Vector2 colliderCenter)
         {
             if (!m_IsKnockbacked)
             {
                 StartCoroutine(KnockbackRoutine(
-                    duration  : knockback.duration,
-                    velocity  : knockback.velocity,
+                    duration  : knockbackInfo.duration,
+                    force     : knockbackInfo.force,
                     direction : new Vector2
                     (
                         x: m_CircleCollider2D.bounds.center.x <= colliderCenter.x ? -1f : 1f,
@@ -199,19 +199,19 @@ namespace PixelAdventureAPI.PlayerLogics
         }
 
         // Coroutine to knockback the player
-        private IEnumerator KnockbackRoutine(float duration, Vector2 velocity, Vector2 direction)
+        private IEnumerator KnockbackRoutine(float duration, Vector2 force, Vector2 direction)
         {
             m_IsKnockbacked = true;
             m_Direction = 0f;
-            float timer = 0f;
-            velocity.x *= direction.x;
-            velocity.y *= direction.y;
-            velocity *= Time.deltaTime;
+            force.x *= direction.x;
+            force.y *= direction.y;
+            m_Rigidbody2D.velocity = Vector2.zero;
 
-            while (timer <= duration)
+            float timer = 0f;
+            while (timer < duration)
             {
                 timer += Time.deltaTime;
-                m_Rigidbody2D.velocity = velocity;
+                m_Rigidbody2D.AddForce(force, ForceMode2D.Impulse);
                 yield return null;
             }
 
@@ -219,6 +219,27 @@ namespace PixelAdventureAPI.PlayerLogics
             m_KnockbackTimer = k_KNOCKBACK_NO_INPUT_TIME;
             yield return 0;
         }
+
+        // private IEnumerator KnockbackRoutine(float duration, Vector2 velocity, Vector2 direction)
+        // {
+        //     m_IsKnockbacked = true;
+        //     m_Direction = 0f;
+        //     float timer = 0f;
+        //     velocity.x *= direction.x;
+        //     velocity.y *= direction.y;
+        //     velocity *= Time.deltaTime;
+
+        //     while (timer <= duration)
+        //     {
+        //         timer += Time.deltaTime;
+        //         m_Rigidbody2D.velocity = velocity;
+        //         yield return null;
+        //     }
+
+        //     m_IsKnockbacked = false;
+        //     m_KnockbackTimer = k_KNOCKBACK_NO_INPUT_TIME;
+        //     yield return 0;
+        // }
 
     }
 }

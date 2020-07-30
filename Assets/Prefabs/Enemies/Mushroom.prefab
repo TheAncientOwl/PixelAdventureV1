@@ -161,9 +161,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_KnockbackType: 0
   m_ColliderType: 0
-  m_Knockback:
-    duration: 0.21
-    velocity: {x: 550, y: 0}
+  m_KnockbackInfo:
+    duration: 0.15
+    force: {x: 1.8, y: 0}
 --- !u!114 &6433458369905044388
 MonoBehaviour:
   m_ObjectHideFlags: 0

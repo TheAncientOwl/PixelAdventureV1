@@ -235,14 +235,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad394a47e996f584ebf5c598b8f8ec20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_KnockbackInfo:
+    duration: 0.08
+    force: {x: 1.53, y: 0.35}
   m_UpForce: 2
   m_DownForce: 7
-  m_Bottom: {fileID: 3714709296929201579}
+  m_Bottom: {fileID: 0}
   m_PlayerLayerMask:
     serializedVersion: 2
     m_Bits: 512
-  m_KnockbackDuration: 0.21
-  m_KnobackVelocity: {x: 471, y: 200}
-  m_Knockback:
-    duration: 0.21
-    velocity: {x: 471, y: 200}

@@ -13,7 +13,7 @@ namespace PixelAdventureAPI.Traps
         private static readonly string k_PLAYER_TAG = "Player";
         private static readonly int k_ON_HASH = Animator.StringToHash("on");
 
-        [SerializeField] private Knockback m_Knockback = null;
+        [SerializeField] private KnockbackInfo m_Knockback = null;
 
         private static PlayerMovement m_PlayerMovement = null;
 
@@ -36,7 +36,7 @@ namespace PixelAdventureAPI.Traps
 
                 m_PlayerMovement.ApplyKnockback360
                 (
-                    knockback      : m_Knockback,
+                    knockbackInfo  : m_Knockback,
                     colliderCenter : m_CircleCollider2D.bounds.center
                 );
 

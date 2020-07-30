@@ -22,7 +22,7 @@ namespace PixelAdventureAPI.Traps
         private Animator m_Animator = null;
         private Damager m_Damager = null;
 
-        [SerializeField] private Knockback m_Knockback = null;
+        [SerializeField] private KnockbackInfo m_KnockbackInfo = null;
 
         [Header("Movement")]
         [SerializeField] private float m_UpForce = 0f;
@@ -61,7 +61,7 @@ namespace PixelAdventureAPI.Traps
 
                 m_PlayerMovement.ApplyKnockback360
                 (
-                    knockback      : m_Knockback,
+                    knockbackInfo  : m_KnockbackInfo,
                     colliderCenter : m_CircleCollider2D.bounds.center
                 );
                 
