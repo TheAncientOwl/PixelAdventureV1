@@ -16,18 +16,16 @@ namespace PixelAdventureAPI.Enemies.Logics
         public void Start()
         {
             SimpleCollision collision = GetComponent<SimpleCollision>();
-            collision.AddOnDeath(OnDeathEvent);
-        }
-
-        private void OnDeathEvent()
-        {
-            PlayerScore.GetInstance().Value += m_Points;
-            m_Points = 0;
-            GetComponent<Animator>().SetTrigger("hit");
-            GetComponent<BasicMovement>().StopAllCoroutines();
-            Rigidbody2D playerRigidbody2d = PlayerMovement.GetInstance().GetRigidbody2D();
-            playerRigidbody2d.velocity = new Vector2(playerRigidbody2d.velocity.x, m_PlayerJumpVelocity);
-            Destroy(this.gameObject, 0.49f);
+            collision.AddOnDeath(delegate ()
+            {
+                PlayerScore.GetInstance().Value += m_Points;
+                m_Points = 0;
+                GetComponent<Animator>().SetTrigger("hit");
+                GetComponent<BasicMovement>().StopAllCoroutines();
+                Rigidbody2D playerRigidbody2d = PlayerMovement.GetInstance().GetRigidbody2D();
+                playerRigidbody2d.velocity = new Vector2(playerRigidbody2d.velocity.x, m_PlayerJumpVelocity);
+                Destroy(this.gameObject, 0.49f);
+            });
         }
 
     }

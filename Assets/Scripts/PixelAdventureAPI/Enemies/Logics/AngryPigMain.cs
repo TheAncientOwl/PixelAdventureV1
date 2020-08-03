@@ -23,32 +23,23 @@ namespace PixelAdventureAPI.Enemies.Logics
             m_Animator = GetComponent<Animator>();
 
             SimpleMovement movement = GetComponent<SimpleMovement>();
-            movement.AddOnStart(OnStartEvent);
-            movement.AddOnIdle(OnIdleEvent);
-            movement.AddAfterIdle(AfterIdleEvent);
-            movement.AddOnAggro(OnAggroEvent);
+            movement.AddOnStart(() => m_Animator.SetBool(k_WALKING_HASH, true));
+            movement.AddOnIdle(() => m_Animator.SetBool(k_WALKING_HASH, false));
+            movement.AddAfterIdle(() => m_Animator.SetBool(k_WALKING_HASH, true));
+            movement.AddOnAggro((float aggroTimer) => m_Animator.SetBool(k_AGGRO_HASH, aggroTimer > 0f));
 
             SimpleCollision collision = GetComponent<SimpleCollision>();
-            collision.AddOnDeath(OnDeathEvent);
+            collision.AddOnDeath(delegate () 
+            {
+                PlayerScore.GetInstance().Value += m_Points;
+                m_Points = 0;
+                m_Animator.SetTrigger(k_HIT_HASH);
+                Rigidbody2D playerRigidbody2d = PlayerMovement.GetInstance().GetRigidbody2D();
+                playerRigidbody2d.velocity = new Vector2(playerRigidbody2d.velocity.x, m_PlayerJumpVelocity);
+                Destroy(this.gameObject, 0.5f);
+            });
         }
-
-        #region << animation events >>
-        private void OnStartEvent() => m_Animator.SetBool(k_WALKING_HASH, true);
-        private void OnIdleEvent() => m_Animator.SetBool(k_WALKING_HASH, false);
-        private void AfterIdleEvent() => m_Animator.SetBool(k_WALKING_HASH, true);
-        private void OnAggroEvent(float aggroTimer) => m_Animator.SetBool(k_AGGRO_HASH, aggroTimer > 0f);
-        #endregion
-
-        private void OnDeathEvent()
-        {
-            PlayerScore.GetInstance().Value += m_Points;
-            m_Points = 0;
-            m_Animator.SetTrigger(k_HIT_HASH);
-            Rigidbody2D playerRigidbody2d = PlayerMovement.GetInstance().GetRigidbody2D();
-            playerRigidbody2d.velocity = new Vector2(playerRigidbody2d.velocity.x, m_PlayerJumpVelocity);
-            Destroy(this.gameObject, 0.5f);
-        }
+        
     }
-
 }
 

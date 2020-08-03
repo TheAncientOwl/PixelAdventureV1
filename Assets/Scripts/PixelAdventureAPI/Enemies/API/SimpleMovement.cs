@@ -1,6 +1,7 @@
 ﻿using PixelAdventureAPI.Others;
 using System.Collections;
 using UnityEngine;
+using System;
 
 namespace PixelAdventureAPI.Enemies.API
 {
@@ -34,21 +35,18 @@ namespace PixelAdventureAPI.Enemies.API
         private bool m_AggroPlayer = false;
         private float m_AggroTimer = 0f;
 
-        #region  << events >>
-        public delegate void AggroEvent(float aggroTimer);
-        public delegate void MovementEvent();
-        
-        private MovementEvent m_OnStart = null;
-        public void AddOnStart(MovementEvent e) => m_OnStart += e;
+        #region  << actions >>
+        private Action m_OnStart = null;
+        public void AddOnStart(Action e) => m_OnStart += e;
 
-        private MovementEvent m_OnIdle = null;
-        public void AddOnIdle(MovementEvent e) => m_OnIdle += e;
+        private Action m_OnIdle = null;
+        public void AddOnIdle(Action e) => m_OnIdle += e;
 
-        private MovementEvent m_AfterIdle = null;
-        public void AddAfterIdle(MovementEvent e) => m_AfterIdle += e;
+        private Action m_AfterIdle = null;
+        public void AddAfterIdle(Action e) => m_AfterIdle += e;
 
-        private AggroEvent m_OnAggro = null;
-        public void AddOnAggro(AggroEvent e) => m_OnAggro += e;
+        private Action<float> m_OnAggro = null;
+        public void AddOnAggro(Action<float> e) => m_OnAggro += e;
         #endregion
 
         private void Start() 

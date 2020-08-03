@@ -1,6 +1,7 @@
 ﻿using PixelAdventureAPI.PlayerLogics;
 using PixelAdventureAPI.Others;
 using UnityEngine;
+using System;
 
 namespace PixelAdventureAPI.Enemies.API
 {
@@ -21,9 +22,8 @@ namespace PixelAdventureAPI.Enemies.API
         private Collider2D m_Collider2D = null;
         private Damager m_Damager = null;
 
-        public delegate void OnDeathEvent();
-        private OnDeathEvent m_OnDeath = null;
-        public void AddOnDeath(OnDeathEvent e) => m_OnDeath += e;
+        private Action m_OnDeath = null;
+        public void AddOnDeath(Action e) => m_OnDeath += e;
 
         private delegate void ApplyKnockback(KnockbackInfo knockback, Vector2 colliderCenter);
         private ApplyKnockback m_ApplyKnockback = null;

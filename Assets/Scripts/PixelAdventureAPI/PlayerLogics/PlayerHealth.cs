@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-
 namespace PixelAdventureAPI.PlayerLogics
 {
     public class PlayerHealth : MonoBehaviour
